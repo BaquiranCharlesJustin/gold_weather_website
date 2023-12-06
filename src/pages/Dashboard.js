@@ -26,19 +26,19 @@ function Dashboard() {
         <div className="">
           <h1 className="text-3xl font-bold underline">Upcoming Forecast</h1>
           <div className="grid grid-cols-3 m-6 gap-6">
-            <div className="text-cyan-100 border border-sky-500 rounded-md">
+            <div className="text-cyan-100 bg-gray-700 p-4 shadow-md rounded-md">
               <p>Time: AM/PM</p>
               <p>Temperature: C</p>
               <p>Wind: M/S</p>
               <p>Humidity: %</p>
             </div>
-            <div className="text-cyan-100 border border-sky-500 rounded-md">
+            <div className="text-cyan-100 bg-gray-700 p-4 shadow-md rounded-md">
               <p>Time: AM/PM</p>
               <p>Temperature: C</p>
               <p>Wind: M/S</p>
               <p>Humidity: %</p>
             </div>
-            <div className="text-cyan-100 border border-sky-500 rounded-md">
+            <div className="text-cyan-100 bg-gray-700 p-4 shadow-md rounded-md">
               <p>Time: AM/PM</p>
               <p>Temperature: C</p>
               <p>Wind: M/S</p>
