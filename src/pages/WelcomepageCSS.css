@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: gold;
+    font-family: Arial, sans-serif;
+}
+
+.video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1000;
+}
+
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    color: gold;
+    border: 2px solid gold;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+    .btn:hover {
+        background-color: gold;
+        color: black;
+    }
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: gold;
+    font-family: Arial, sans-serif;
+}
+
+.login-form {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gold;
+    background: transparent;
+    color: gold;
+    margin: 5px;
+}
+
+.transparent-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    color: gold;
+    border: 2px solid gold;
+    border-radius: 5px;
+    transition: all 0.3s;
+    background-color: transparent;
+}
+
+    .transparent-btn:hover {
+        background-color: gold;
+        color: black;
+    }
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    color: gold;
+    border: 2px solid gold;
+    border-radius: 5px;
+    transition: all 0.3s;
+    background-color: transparent; /* Making the background transparent */
+}
+
+    .btn:hover {
+        background-color: gold;
+        color: black;
+    }
+
+.login-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Set the background to white */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: gold;
+    z-index: 999; /* Adjust the z-index to ensure it's on top of other elements */
+    width: 300px; /* Adjust the width as needed */
+    max-width: 80%; /* Ensures it's responsive and doesn't overflow on smaller screens */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Add a subtle shadow for depth */
+}
+
+
+#signupFormContainer {
+    display: none;
+}
+
+/* Your existing CSS */
+
+.signup-form {
+    display: none; /* Hide the signup form by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 350px; /* Adjusted width */
+    width: 90%;
+    text-align: center;
+}
+
+    .signup-form h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .signup-form input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px; /* Slightly smaller font size */
+    }
+
+        .signup-form input[type="date"] {
+            /* Adjust the date input appearance if needed */
+            /* Example: */
+            padding: 10px;
+        }
+
+    .signup-form button {
+        width: calc(100% - 20px);
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .signup-form button:hover {
+            background-color: #0056b3;
+        }
+
+.popup-message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    width: 90%;
+    text-align: center;
+    font-family: 'Helvetica', sans-serif; /* Setting font to Helvetica */
+}
+
+    .popup-message span {
+        color: #333;
+        font-family: 'Helvetica', sans-serif; /* Setting font to Helvetica */
+    }
+

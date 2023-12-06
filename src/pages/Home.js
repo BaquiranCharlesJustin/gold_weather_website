@@ -1,11 +1,42 @@
-import React from "react";
-import './Home.css';
+import React, { Component } from "react";
+import { database } from "./firebaseConfig";
+import { ref, get } from "firebase/database";
+import "./Home.css";
 
-class Home extends React.Component {
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      weatherForecast: [],
+    };
+  }
+
+  componentDidMount() {
+    const weatherRef = ref(database, "weatherForecast");
+
+    get(weatherRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const weatherArray = Object.entries(snapshot.val()).map(
+            ([id, data]) => ({
+              id,
+              ...data,
+            })
+          );
+          this.setState({ weatherForecast: weatherArray });
+          console.log(weatherRef);
+        } else {
+          console.log("No Data Available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   render() {
+    const { weatherForecast } = this.state;
     return (
       <div>
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"></link>
         <nav className="bg-black p-4 mb-8 flex justify-center custom-bg">
           <ul className="flex space-x-4">
             <li>
@@ -50,6 +81,17 @@ class Home extends React.Component {
             <div className="p-6 bg-black rounded-lg shadow-md border-2 border-yellow-300">
               <h1 className="text-4xl font-bold mb-6">Weather Dashboard</h1>
               <div className="mb-6">
+                {weatherForecast.map((weather) => (
+                  <div key={weather.id}>
+                    <h2 className="text-5xl text-red-500">
+                      TEST OF FETCHING DATA FROM FIREBASE
+                    </h2>
+                    <p className="text-2xl text-red-500">{weather.humid}</p>
+                    <p className="text-2xl text-red-500">{weather.time}</p>
+                    <p className="text-2xl text-red-500">{weather.temp}</p>
+                  </div>
+                ))}
+                <div></div>
                 <h2 className="text-2xl font-bold mb-2">Today's Weather</h2>
                 <p>
                   Temperature: <span id="temp4"></span>°C
@@ -122,34 +164,10 @@ class Home extends React.Component {
             </p>
           </div>
         </div>
-
-        {/* <script>
-        fetch("../pages/api/goldData.json")
-            .then(response => response.json())
-            .then(data =>{
-                console.log(data.DHT.time["x"])
-                console.log(data.DHT.time.temp["y"])
-                console.log(data.DHT.time.hum["z3"])
-                //1st Weather
-                document.querySelector("#time").innerText = data.DHT.time["x"]
-                document.querySelector("#temp").innerText = data.DHT.time.temp["y"]
-                document.querySelector("#hum").innerText = data.DHT.time.hum["z"]
-                //2nd Weather
-                document.querySelector("#time2").innerText = data.DHT.time["x2"]
-                document.querySelector("#temp2").innerText = data.DHT.time.temp["y2"]
-                document.querySelector("#hum2").innerText = data.DHT.time.hum["z2"]
-                //3rd Weather
-                document.querySelector("#time3").innerText = data.DHT.time["x3"]
-                document.querySelector("#temp3").innerText = data.DHT.time.temp["y3"]
-                document.querySelector("#hum3").innerText = data.DHT.time.hum["z3"]
-                //weather today
-                document.querySelector("#temp4").innerText = data.DHT.time.temp["y4"]
-                document.querySelector("#hum4").innerText = data.DHT.time.hum["z4"]
-            })
-
-    </script> */}
       </div>
     );
   }
 }
+
+// Export the functional component
 export default Home;
