@@ -2,12 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {
+
+    extend:{
       colors: {
-        gold: "#FFD700",
-        white: "#FFFFFF",
-      },
-    }
+        gold: '#FFD700'
+    },
   },
   plugins: [require("daisyui")],
+}
+
 };
+
