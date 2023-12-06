@@ -14,6 +14,8 @@ function Layout() {
           <li>
             <Link to="/contact">Different City</Link>
           </li>
+          <li>
+          </li>
         </ul>
       </nav>
 

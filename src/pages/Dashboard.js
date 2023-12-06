@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { database } from "./firebaseConfig";
 import { ref, get } from "firebase/database";
+import { useLocation } from "react-router";
 
 function Dashboard() {
+  const location = useLocation()
+  console.log(location.state.uids)
   const [weatherForecast, setWeatherForecast] = useState([]);
 
   useEffect(() => {
