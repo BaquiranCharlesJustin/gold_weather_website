@@ -7,8 +7,7 @@ module.exports = {
     extend:{
       colors: {
         gold: '#FFD700'
-      },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

@@ -7,12 +7,14 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./pages/Layout";
 import reportWebVitals from "./reportWebVitals";
+import Login_modal from "./login_modal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="app" element={<App />} />
         <Route path="/" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
