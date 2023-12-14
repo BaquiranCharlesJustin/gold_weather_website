@@ -4,24 +4,19 @@ import { ref, get } from "firebase/database";
 import { useLocation } from "react-router";
 
 function Dashboard() {
-  const location = useLocation()
-  console.log(location.state.uids)
+  const location = useLocation();
+  console.log(location.state.uids);
   const [weatherForecast, setWeatherForecast] = useState([]);
 
   useEffect(() => {
-    const weatherRef = ref(database, "weatherForecast");
+    const weatherRef = ref(database, "DHT");
 
     get(weatherRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
-          const weatherArray = Object.entries(snapshot.val()).map(
-            ([id, data]) => ({
-              id,
-              ...data,
-            })
-          );
-          setWeatherForecast(weatherArray);
-          console.log(weatherArray);
+          const weatherData = Object.values(snapshot.val());
+          setWeatherForecast(weatherData);
+          console.log(weatherData);
         } else {
           console.log("No Data Available");
         }
@@ -30,6 +25,26 @@ function Dashboard() {
         console.error(error);
       });
   }, []);
+
+  //   get(weatherRef)
+  //     .then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         const weatherArray = Object.entries(snapshot.val()).map(
+  //           ([id, data]) => ({
+  //             id,
+  //             ...data,
+  //           })
+  //         );
+  //         setWeatherForecast(weatherArray);
+  //         console.log(weatherArray);
+  //       } else {
+  //         console.log("No Data Available");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   return (
     <div className="grid grid-cols-2 gap-4 bg-black h-screen container mx-auto py-12">
@@ -49,11 +64,11 @@ function Dashboard() {
       <div className="p-6 text-cyan-100 border border-sky-500 rounded-md flex flex-col justify-around">
         <h1 className="text-3xl font-bold underline">Weather Dashboard</h1>
         {weatherForecast.length > 0 && (
-          <div key={weatherForecast[0].id}>
+          <div key={Object.keys(weatherForecast[0])[0]}>
             <h2 className="text-2xl text-gold font-bold">Today's Weather</h2>
-            <p>Temperature: {weatherForecast[0].temp} C</p>
-            <p>Wind: {weatherForecast[0].time}</p>
-            <p>Humidity: {weatherForecast[0].humid} %</p>
+            {/* <p>Temperature: {weatherForecast[0].temp} C</p> */}
+            <p>Wind: {Object.values(weatherForecast[0])[0]}</p>
+            {/* <p>Humidity: {weatherForecast[0].humid} %</p> */}
           </div>
         )}
         {/* Upcoming Forecast */}
@@ -65,10 +80,10 @@ function Dashboard() {
                 key={forecast.id}
                 className="text-cyan-100 bg-gray-700 p-4 shadow-md rounded-md"
               >
-                <p>Time: {forecast.time}</p>
+                {/* <p>Time: {forecast.time}</p>
                 <p>Temperature: {forecast.temp}</p>
                 <p>Wind: M/S</p>
-                <p>Humidity: {forecast.humid}</p>
+                <p>Humidity: {forecast.humid}</p> */}
               </div>
             ))}
           </div>
