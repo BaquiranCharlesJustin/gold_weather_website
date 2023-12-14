@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import { database } from "./firebaseConfig";
 import { ref, get } from "firebase/database";
 import { useLocation } from "react-router";
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+import LineChart from "./LineChart";
+Chart.register(CategoryScale);
 
 function Dashboard() {
-  const location = useLocation();
-  console.log(location.state.uids);
+  // const location = useLocation();
+  // // console.log(location.state ? location.state.uids : null);
   const [weatherForecast, setWeatherForecast] = useState([]);
 
   useEffect(() => {
-    const weatherRef = ref(database, "DHT");
+    const weatherRef = ref(database, "aduForecast");
 
     get(weatherRef)
       .then((snapshot) => {
@@ -49,26 +53,19 @@ function Dashboard() {
   return (
     <div className="grid grid-cols-2 gap-4 bg-black h-screen container mx-auto py-12">
       {/* User Profile */}
-      <div className="p-6 text-cyan-100 border border-sky-500 rounded-md">
-        <h1 className="text-3xl  font-bold underline">User Profile</h1>
-        <div>
-          <p>Username:</p>
-          <p>Address: </p>
-          <p>Birthdate: </p>
-          <p>Contact Info: </p>
-          <p>Position: </p>
-          <p>Email: </p>
-        </div>
+      <div className="p-6 text-cyan-100 border border border-gold rounded-md">
+        <h1 className="text-3xl  font-bold underline">GRAPH</h1>
+        <LineChart weatherData={weatherForecast} />
       </div>
       {/* Weather Dashboard */}
-      <div className="p-6 text-cyan-100 border border-sky-500 rounded-md flex flex-col justify-around">
+      <div className="p-6 text-cyan-100 border border-gold rounded-md flex flex-col justify-center gap-11">
         <h1 className="text-3xl font-bold underline">Weather Dashboard</h1>
         {weatherForecast.length > 0 && (
           <div key={Object.keys(weatherForecast[0])[0]}>
             <h2 className="text-2xl text-gold font-bold">Today's Weather</h2>
-            {/* <p>Temperature: {weatherForecast[0].temp} C</p> */}
-            <p>Wind: {Object.values(weatherForecast[0])[0]}</p>
-            {/* <p>Humidity: {weatherForecast[0].humid} %</p> */}
+            <p>Temperature: {weatherForecast[0].temp} C</p>
+            <p>Wind: {weatherForecast[0].time}</p>
+            <p>Humidity: {weatherForecast[0].humi} %</p>
           </div>
         )}
         {/* Upcoming Forecast */}
@@ -80,10 +77,10 @@ function Dashboard() {
                 key={forecast.id}
                 className="text-cyan-100 bg-gray-700 p-4 shadow-md rounded-md"
               >
-                {/* <p>Time: {forecast.time}</p>
+                <p>Time: {forecast.time}</p>
                 <p>Temperature: {forecast.temp}</p>
                 <p>Wind: M/S</p>
-                <p>Humidity: {forecast.humid}</p> */}
+                <p>Humidity: {forecast.humi}</p>
               </div>
             ))}
           </div>
@@ -91,10 +88,14 @@ function Dashboard() {
       </div>
 
       {/* About Us */}
-      <div className="p-6 text-cyan-100 border border-sky-500 rounded-md col-span-2">
+      <div className="p-6 text-cyan-100 border border border-gold rounded-md col-span-2">
         <h1 className="text-3xl font-bold underline">About Us Section</h1>
         <div>
-          <p>About Us: </p>
+          <h1>GROUP GOLD</h1>
+          <p>
+            About Us: Aiman Baga | Jacky Bruce Ibarra | Justin Baquiran | Kurt Sabino
+            | Lance Del Rosario | Nick Jimenez | Patrick Maullon | Rafael Aquino |  Rhenz Martinez|
+          </p>
         </div>
       </div>
     </div>
