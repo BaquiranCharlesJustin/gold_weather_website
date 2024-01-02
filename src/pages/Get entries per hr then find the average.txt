@@ -1,0 +1,1 @@
+ Get entries per hr then find the average of the data then display it as a single dot

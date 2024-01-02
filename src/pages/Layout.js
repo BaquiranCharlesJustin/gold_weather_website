@@ -6,13 +6,7 @@ function Layout() {
       <nav>
         <ul className="flex justify-center gap-4 text-cyan-100">
           <li>
-            <Link to="/">Welcome</Link>
-          </li>
-          <li>
-            <Link to="/blogs">About Us</Link>
-          </li>
-          <li>
-            <Link to="/contact">Different City</Link>
+            <Link to="/">Logout</Link>
           </li>
           <li>
           </li>
