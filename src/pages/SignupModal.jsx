@@ -3,26 +3,20 @@ import { useState } from 'react'
 import { auth } from './firebaseConfig'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import { useNavigate } from "react-router-dom";
 const SignupModal = ({ open }) => {
   const [username , setUsername] = useState("")
   const [email , setEmail] = useState("")
   const [password , setPassword] = useState("")
-  const navigate = useNavigate();
   const handleRegister = () =>{
     console.log(email,username,password) 
     createUserWithEmailAndPassword(auth,email,password).then((success) =>{
       console.log("User Created")
       // const user = userCredential.user;
-      alert("Succesful Login")
-      
-      navigate("/")
       const db = getDatabase();
       set(ref(db, `users/${success.user.uid}`), {
         username:username,
         email:email,
         id:success.user.uid    
-        
     });
    
     })
