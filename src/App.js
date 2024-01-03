@@ -34,7 +34,7 @@ function App() {
         muted
       />
       <div className="relative text-5xl text-gold mb-8">
-        Welcome to my TITE!
+        Welcome!
       </div>
       <div className="relative flex gap-4">
         {!isModalOpen && !isLoginModal && (
